@@ -1,0 +1,21 @@
+Sub Mail_workbook_Outlook_1()
+    Dim OutApp As Object
+    Dim OutMail As Object
+    Set OutApp = CreateObject("Outlook.Application")
+    Set OutMail = OutApp.CreateItem(0)
+
+    On Error Resume Next
+    With OutMail
+        .to = "barcza.peter@nav.gov.hu"
+        .CC = ""
+        .BCC = ""
+        .Subject = "Ez a tárgy"
+        .Body = "Ez lehet üres"
+        .Attachments.Add ActiveWorkbook.FullName
+        .Send
+    End With
+    On Error GoTo 0
+
+    Set OutMail = Nothing
+    Set OutApp = Nothing
+End Sub
